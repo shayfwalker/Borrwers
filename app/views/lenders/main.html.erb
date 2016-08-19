@@ -1,0 +1,64 @@
+<a href="/lenders/destroy">Logout</a>
+
+
+
+
+
+
+
+
+<h1>Name: <%= @lender.first_name %></h1>
+<h2>Account Balance: <%= @balance %></h2>
+
+<p>List of people in need of help:</p>
+<div>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Need Money For</th>
+			<th>Reason for Loan</th>
+			<th>Amount Needed</th>
+			<th>Amount</th>
+			<th>Action</th>
+			<th>Amount Raised</th>
+		</tr>
+	<% @borrowers.each do |borrower| %>	
+		<tr>
+			<th><%= borrower.first_name %></th>
+			<th><%= borrower.need_money%></th>
+			<th><%= borrower.description %></th>
+			<th><%= borrower.amount_needed %></th>
+			<th>
+			
+				
+					<select>
+						<option>$25</option>
+						<option>$50</option>
+						<option>$75</option>
+						<option>$100</option>
+					</select>
+			
+			
+			</th>
+			
+			<th><button>Lend</button></th>
+			<th><%= @balance_raised %></th>
+		
+		</tr>
+		<% end %>	
+	</table>
+</div id="lended">
+
+<p>List of people you lend money to:</p>
+<div>
+	<table>
+		<tr>
+			<th>Name:</th>
+			<th>Need money for</th>
+			<th>Readon for loan</th>
+			<th>Amount needed</th>
+			<th>Amount raised</th>
+			<th>Amount Lent</th>
+		</tr>
+	</table>
+</div>
