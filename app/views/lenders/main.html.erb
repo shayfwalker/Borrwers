@@ -1,64 +1,81 @@
+<style type="text/css">
+	#lent{
+		overflow:scroll; 
+	}
+
+
+</style>
+
 <a href="/lenders/destroy">Logout</a>
-
-
-
-
-
-
-
-
-<h1>Name: <%= @lender.first_name %></h1>
-<h2>Account Balance: <%= @balance %></h2>
+<h1>Name: <%= @lender.first_name %><%= @lender.last_name %></h1>
+<h2>Account Balance: <%= @lender.money %></h2>
 
 <p>List of people in need of help:</p>
-<div>
+<div id="lended">
 	<table>
 		<tr>
 			<th>Name</th>
 			<th>Need Money For</th>
 			<th>Reason for Loan</th>
 			<th>Amount Needed</th>
+			<th>Amount Raised</th>
 			<th>Amount</th>
 			<th>Action</th>
-			<th>Amount Raised</th>
 		</tr>
+		
 	<% @borrowers.each do |borrower| %>	
 		<tr>
 			<th><%= borrower.first_name %></th>
 			<th><%= borrower.need_money%></th>
 			<th><%= borrower.description %></th>
 			<th><%= borrower.amount_needed %></th>
+			<th><%= borrower.raised %></th>
+			
+		<% if @lender.money != 0 %>
+		<form action="/histories/create" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 			<th>
-			
-				
-					<select>
-						<option>$25</option>
-						<option>$50</option>
-						<option>$75</option>
-						<option>$100</option>
-					</select>
-			
+				<input type="number" name="amount">	
+		<input type="hidden" name="lender" value = "<%= @lender.id %> ">
+		<input type="hidden" name="borrower" value = "<%= borrower.id %> ">
+
+		
 			
 			</th>
-			
-			<th><button>Lend</button></th>
-			<th><%= @balance_raised %></th>
+			<th><input type="submit" name="Lend"></th>
+		</form>	
+			<!-- <th><%= @balance_raised %></th> -->
 		
 		</tr>
+		
+		<% end %>
 		<% end %>	
+		
+			
 	</table>
-</div id="lended">
+</div>
 
-<p>List of people you lend money to:</p>
-<div>
+<div id="lent">
+<p>List of people you've lended money to</p>
 	<table>
 		<tr>
-			<th>Name:</th>
-			<th>Need money for</th>
-			<th>Readon for loan</th>
-			<th>Amount needed</th>
-			<th>Amount raised</th>
-			<th>Amount Lent</th>
+			<th>Name |</th>
+			<th>Need money for |</th>
+			<th>Amount needed |</th>
+			<th>Amount raised |</th>
+			<th>Amount Lent </th>
 		</tr>
+		<% if @borrowerslent%>
+		<% @borrowerslent.each do |borrower| %> 
+		<tr>
+			<td><%= borrower.borrower.first_name %></td>
+			<td><%= borrower.borrower.need_money %></td>
+			<td><%= borrower.borrower.amount_needed %></td>
+			<td><%= borrower.borrower.raised%></td>
+			<td><%= borrower.amount %></td>
+		</tr>
+		<% end %>
+		<% end %>
+
 	</table>
 </div>

@@ -1,13 +1,15 @@
 class BorrowersController < ApplicationController
 
-  def index
-    @borrower = Borrower.find_by(session[:borrower_user])
-    @borrowers= Borrower.all
-    @balance = "1000" 
-    @balance_raised = "0"
-    
+  def index 
+    @borrower = Borrower.find(session[:borrower_id])
+    if session[:lender_id]
+    @lender = Lender.find(session[:lender_id])
+    end  
+  
+    @list = History.joins(:lender).where(borrower_id: session[:borrower_id])
   end   
 
+  
   def create
   	borrower = Borrower.create(borrower_params)
   	if borrower.save

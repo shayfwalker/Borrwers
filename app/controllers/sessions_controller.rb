@@ -12,17 +12,19 @@ class SessionsController < ApplicationController
       redirect_to '/lenders/main'
       
     elsif
-    @borrower = Borrower.find_by_email(params[:email])
+      @borrower = Borrower.find_by_email(params[:email])
    
-    @borrower && @borrower.authenticate(params[:password])
-      session[:borrrower_id] = @borrower.id
+      if @borrower && @borrower.authenticate(params[:password])
+        puts @borrower
+      
+      session[:borrower_id] = @borrower.id
       redirect_to '/borrowers/index'
+      end
     else
       flash[:errors] = ["Invalid"]
       redirect_to '/logins/index'
     end
   end
-
 
   
 end

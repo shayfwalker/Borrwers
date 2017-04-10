@@ -1,10 +1,10 @@
 <a href="/lenders/destroy">Logout</a>
 
 <h1>Name: <%= @borrower.first_name %> </h1>
-<p>Amount Needed:<%= @balance %></p>
-<p>Amount Raised:<%= @balance_raised %> </p>
+<p>Amount Needed:<%= @borrower.amount_needed %></p>
+<p>Amount Raised:<%= @borrower.raised %> </p>
 
-<p>List of people who lend you money:</p>
+<p>List of people who gave you money</p>
 <div>
 	<table>
 		<tr>
@@ -13,8 +13,16 @@
 			<th>Amount Lent</th>
 			
 		</tr>
+			<% if @list%>
+			<% @list.each do |list| %>
 		<tr>
-			<th></th>
+			<th><%= list.lender.first_name %></th>
+			<th><%= list.lender.email %></th>
+			<th><%= list.amount %></th>
+			
 		</tr>
+		
+		<% end %>
+		<% end %>
 	</table>
 </div>

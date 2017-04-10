@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'online_lending/register'
+
+  get 'online_lending/login'
+
+  get 'online_lending/borrower'
+
+  get 'online_lending/lender'
+
   root'lenders#index'
   get 'borrowers/index'
 
@@ -8,8 +16,10 @@ Rails.application.routes.draw do
   post 'sessions'=>'sessions#create'
   # get 'sessions/borrower'
   # post'sessions'=>'sessions#borrower'
-  
-
+  get 'lenders/update'
+  post 'lenders/update'=>'lenders#update'
+  get 'histories/create'
+  post'histories/create'=>'histories#create'
   
   
   get 'lenders/destroy'
