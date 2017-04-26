@@ -1,0 +1,35 @@
+ body{
+
+ }
+
+ #lender{
+	display:inline-block; 
+	padding-left:15em;
+	border-right:1px solid black; 
+	width:26em;
+	height:20em;
+
+
+}
+
+/*#lender input{
+	padding-bottom:1em; 
+	margin-top:1em;
+	padding-left:3em; 
+	position:relative;
+	left:2em;
+}*/
+
+#lender label{
+	margin-right:1em;
+}
+
+#borrower{
+display:inline-block; 
+padding-left:15em; 
+padding-top:5em;
+position:relative;
+top:2.5em;
+width:30em;
+height:20em;
+}

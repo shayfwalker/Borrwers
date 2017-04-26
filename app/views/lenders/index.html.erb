@@ -4,7 +4,10 @@
 	<% end %>
 <% end %>
 
-<form action="/lenders/create" method="post">
+
+	
+
+<form action="/lenders/create" method="post" id="lender">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<h1>Register to be a Lender!</h1>
 
@@ -31,6 +34,7 @@
 </form>
 
 
+
 <% if flash[:errors] %>
 	<% flash[:errors].each do |e| %>
 		<p><%= e %></p>
@@ -42,7 +46,7 @@
 
 
 
-<form action="/borrowers/create" method="post">
+<form action="/borrowers/create" method="post" id="borrower">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<h1>Register to be Borrower!</h1>
 
